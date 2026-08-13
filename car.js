@@ -9,10 +9,13 @@ class Car {
         this.maxSpeed = 4;
         this.friction = 0.05;
         this.angle = 0;
+        this.sensor = new Sensor(this);
+
         this.controls = new Controls();
     }
     update() {
         this.#move();
+        this.sensor.update();
     }
     #move() {if (this.controls.forward) {
             this.speed += this.acceleration;
@@ -76,5 +79,6 @@ class Car {
             this.height);
         ctx.fill();
         ctx.restore();
+        this.sensor.draw(ctx);
     }
 }
